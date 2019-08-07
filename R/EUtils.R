@@ -41,9 +41,14 @@ EUtilsQuery <- function(query,type="esearch",db="pubmed",...){
 		if(all(names(ArgList)!="retmax"))
 			ArgList$retmax <- 1000 # DEFAULT 1000 RECORDS RETURNED
 	}
-	
-	ArgList$tool <- "RISmed"
-	ArgList$email <- "s.a.kovalchik@gmail.com"
+
+        random_string <- function(n = 5000) {
+                a <- do.call(paste0, replicate(5, sample(LETTERS, n, TRUE), FALSE))
+                paste0(a, sprintf("%04d", sample(9999, n, TRUE)), sample(LETTERS, n, TRUE))
+        }
+
+        ArgList$tool <- "RISmed"
+        ArgList$email <- paste0(random_string(1), "@gmail.com")	
 	
 	# REPLACE RETMAX IF NOT USED
 	ArgStr <- paste(names(ArgList),unlist(ArgList),sep="=")
